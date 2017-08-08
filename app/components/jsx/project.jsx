@@ -10,6 +10,7 @@ class Project extends React.Component {
 		this.state = {
     		
    		};
+   		this.change = this.change.bind(this);
 	}
 	componentDidMount(){
 		var xhr = new XMLHttpRequest();
@@ -17,9 +18,6 @@ class Project extends React.Component {
 			if(xhr.readyState == 4 && xhr.status == 200){
 				var res = JSON.parse(xhr.responseText);
 				console.log(res);
-				this.setState({
-					goods:JSON.parse(xhr.responseText)
-				});
 				var html = '';
 				var i = 0;
 				for(;i<res.goods.length;i++){
@@ -33,15 +31,28 @@ class Project extends React.Component {
 						        <td>${res.goods[i].sell_by_date}</td>
 					      	</tr>`
 				}
-				var tbody = document.querySelector('tbody')
+				//使用refs获取实例节点
+				var tbody = this.refs.tbody;
+				console.log(tbody);
 				console.log(html)
-				console.log(tbody)
-				tbody.appendChild(html)
+				tbody.innerHTML = html;
+				this.setState({
+					goods:JSON.parse(xhr.responseText)
+				});
 				
 			}
 		}.bind(this);
 		xhr.open('GET','./json/systemData.json',true);
 		xhr.send();
+	}
+	change(event) {
+		console.log(event.target)
+		this.setState({
+			active:'active'
+		})
+		switch(event.target.innerText) {
+			
+		}
 	}
   	render() {
 	    return (
@@ -63,20 +74,10 @@ class Project extends React.Component {
 						        <th>商品到期日</th>
 						    </tr>
 					    </thead>
-					    <tbody>
-					      	<tr>
-						        <td>1</td>
-						        <td>Table cell</td>
-						        <td>Table cell</td>
-						        <td>Table cell</td>
-						        <td>Table cell</td>
-						        <td>Table cell</td>
-						        <td>Table cell</td>
-					      	</tr>
-					    </tbody>
+					    <tbody ref="tbody"></tbody>
 					</Table>
-		        	<ul className="pagination">
-		        		<li>1</li>
+		        	<ul className="pagination" onClick={this.change}>
+		        		<li className={this.state.active}>1</li>
 		        		<li>2</li>
 		        		<li>3</li>
 		        		<li>4</li>

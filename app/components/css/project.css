@@ -64,3 +64,10 @@
 	border: 1px solid #E9E9E9;
 	cursor: pointer;
 }
+.System_container .pagination .active {
+	padding: 0 10px;
+	border: 1px solid #E9E9E9;
+	cursor: pointer;
+	background: darkred;
+	color: #fff;
+}
