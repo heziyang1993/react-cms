@@ -11,8 +11,7 @@ import {increaseAction, multiAction} from './action.js';
 //模块化reducer
 import counter from './reducer.js';
 import './components/css/base.css';
-import './components/css/sideBar.css';
-import './components/css/project.css';
+import './components/css/basic.css';
 import './components/iconfont/iconfont.css';
 // Store
 const store = createStore(counter);
