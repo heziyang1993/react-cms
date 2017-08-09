@@ -28,7 +28,7 @@ class Project extends React.Component {
     		loading: false,
     		columns : [{
 			  title: 'ID',
-			  key: 'id',
+			  dataIndex: 'id',
 			}, {
 			  title: '名称',
 			  dataIndex: 'name',
@@ -47,6 +47,7 @@ class Project extends React.Component {
 			}],
 			data:[]
 		}
+		this.onSelectChange = this.onSelectChange.bind(this);
 	}
 	start() {
 	    this.setState({ loading: true });
@@ -72,6 +73,7 @@ class Project extends React.Component {
 				for(var i = 0;i<res.goods.length;i++){
 					console.log(i)
 					var goods = {
+							key:res.goods[i].id,
 					        id:res.goods[i].id,
 					        name:res.goods[i].name,
 					        classify:res.goods[i].classify,
@@ -109,6 +111,8 @@ class Project extends React.Component {
 	          >
 	            Reload
 	          </Button>
+	          <span className="search_container"><input type="text" className="search_text"/></span>
+	          <span className="btn_container"><button className="search_btn">搜索</button></span>
 	          <span style={{ marginLeft: 8 }}>
 	            {hasSelected ? `Selected ${selectedRowKeys.length} items` : ''}
 	          </span>

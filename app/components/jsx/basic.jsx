@@ -4,7 +4,7 @@ import {createBrowserHistory, createHashHistory} from 'history'
 const history = createHashHistory()
 //引入组件
 import Project from "./project.jsx";
-
+import Datamap from "./datamap.jsx";
 import {increaseAction, multiAction} from '../../action.js';
 
 import {connect} from 'react-redux';
@@ -43,11 +43,11 @@ class Basic extends React.Component {
 			          <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
 			            <Menu.Item key="1">
 			              <Icon type="pie-chart" />
-			              <span>项目管理</span>
+			              <span><a href="#/datamap" className="changeTab">数据地图</a></span>
 			            </Menu.Item>
 			            <Menu.Item key="2">
 			              <Icon type="desktop" />
-			              <span><a href="#/project">商品管理</a></span>
+			              <span><a href="#/project" className="changeTab">商品快速查询</a></span>
 			            </Menu.Item>
 			            <SubMenu
 			              key="sub1"
@@ -75,8 +75,9 @@ class Basic extends React.Component {
 			          <span className="username">heziyang1993</span>
 			          <span className="loginout">退出</span>
 			          <Content style={{ margin: '0 16px' }}>
-									<Route path="/project" component={Project}/>
-			            
+			          	
+						<Route path="/project" component={Project}/>
+			            <Route exact path="/datamap" component={Datamap}/>
 			          </Content>
 			          <Footer style={{ textAlign: 'center' }}>
 			            Ant Design ©2016 Created by Ant UED
