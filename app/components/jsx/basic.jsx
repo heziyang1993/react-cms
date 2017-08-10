@@ -6,15 +6,14 @@ const history = createHashHistory()
 import Project from "./project.jsx";
 import Datamap from "./datamap.jsx";
 import {increaseAction, multiAction} from '../../action.js';
-
+import User from "./user.jsx";
 import {connect} from 'react-redux';
 //引入antd
 import { Layout, Menu, Breadcrumb, Icon } from 'antd';
 const { Header, Content, Footer, Sider } = Layout;
-
 import 'antd/dist/antd.css';
 const SubMenu = Menu.SubMenu;
-
+import Detail from './edit.jsx';
 // React component
 class Basic extends React.Component {
 	  constructor(props) {
@@ -28,6 +27,17 @@ class Basic extends React.Component {
 			    console.log(collapsed);
 			    this.setState({ collapsed });
 			  }
+		    componentDidMount(){
+		    	var cookies = document.cookie.split('; ');
+		    	cookies.forEach(function(ele){
+		    		var temp = ele.split('=');
+		    		if(temp[0] == 'user') {
+		    			return
+		    		}else {
+		    			location.hash = '/login';
+		    		}
+		    	})
+		    }
 		  render() {
 		  	//const {count, increase, decrease} = this.props;继承redux里面的state和action
 		    return (
@@ -43,11 +53,15 @@ class Basic extends React.Component {
 			          <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
 			            <Menu.Item key="1">
 			              <Icon type="pie-chart" />
-			              <span><a href="#/datamap" className="changeTab">数据地图</a></span>
+			              <span><a href="#/basic/datamap" className="changeTab">数据地图</a></span>
 			            </Menu.Item>
 			            <Menu.Item key="2">
 			              <Icon type="desktop" />
-			              <span><a href="#/project" className="changeTab">商品快速查询</a></span>
+			              <span><a href="#/basic/project" className="changeTab">商品快速查询</a></span>
+			            </Menu.Item>
+			            <Menu.Item key="9">
+			              <Icon type="desktop" />
+			              <span><a href="#/basic/user" className="changeTab">人员管理</a></span>
 			            </Menu.Item>
 			            <SubMenu
 			              key="sub1"
@@ -75,13 +89,17 @@ class Basic extends React.Component {
 			          <span className="username">heziyang1993</span>
 			          <span className="loginout">退出</span>
 			          <Content style={{ margin: '0 16px' }}>
-			          	
-						<Route path="/project" component={Project}/>
-			            <Route exact path="/datamap" component={Datamap}/>
+			          <Breadcrumb style={{ margin: '12px 0' }}>
+		              <Breadcrumb.Item></Breadcrumb.Item>
+		              <Breadcrumb.Item></Breadcrumb.Item>
+		            </Breadcrumb>
+			          	<div className="basic_main" style={{ padding: 24, background: '#fff'}}>
+										<Route path="/basic/project" component={Project}/>
+			            	<Route exact path="/basic/datamap" component={Datamap}/>
+			            	<Route exact path="/basic/user" component={User}/>
+			            	<Route exact path="/basic/detail" component={Detail}/>
+			            </div>
 			          </Content>
-			          <Footer style={{ textAlign: 'center' }}>
-			            Ant Design ©2016 Created by Ant UED
-			          </Footer>
 			        </Layout>
 			      </Layout>
 
@@ -119,3 +137,6 @@ export default Basic;
 //			            <div style={{ padding: 24, background: '#fff', minHeight: 360 }}>
 //			              Bill is a cat.
 //			            </div>
+//<Footer style={{ textAlign: 'center' }}>
+//			            Ant Design ©2016 Created by Ant UED
+//			          </Footer>

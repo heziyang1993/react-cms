@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Basic from "./components/jsx/basic.jsx";
+import Basic from "./components/jsx/home.jsx";
 
 //redux
 import {Provider, connect} from 'react-redux';

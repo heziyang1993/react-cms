@@ -7,7 +7,7 @@ import {increaseAction, multiAction} from '../../action.js';
 
 import {connect} from 'react-redux';
 //引入antd
-import { Table, Button } from 'antd';
+import { Table, Button ,Icon} from 'antd';
 import 'antd/dist/antd.css';
 
 //
@@ -44,10 +44,21 @@ class Project extends React.Component {
 			}, {
 			  title: '到期日',
 			  dataIndex: 'sell_by_date',
+			},{
+			  title: '操作',
+			  key: 'action',
+			  render: (text, record) => (
+			    <span>
+			      <a href="#/detail?id=">编辑</a>
+			      	<span className="ant-divider" />
+			      <a href="#">删除</a>
+			    </span>
+			  )
 			}],
 			data:[]
 		}
 		this.onSelectChange = this.onSelectChange.bind(this);
+		this.start = this.start.bind(this);
 	}
 	start() {
 	    this.setState({ loading: true });
@@ -82,7 +93,6 @@ class Project extends React.Component {
 					        sell_by_date:res.goods[i].sell_by_date
 				      	}
 					data.push(goods);
-					console.log(goods)
 				}
 				this.setState({
 					data:data
@@ -118,6 +128,7 @@ class Project extends React.Component {
 	          </span>
 	        </div>
 	        <Table rowSelection={rowSelection} columns={this.state.columns} dataSource={this.state.data} />
+	        
 	      </div>
 	    );
 	}
