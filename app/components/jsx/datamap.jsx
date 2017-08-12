@@ -128,8 +128,8 @@ class Datamap extends React.Component {
 			<div>
 				<Tabs defaultActiveKey="1" onChange={this.callback}>
 				    <TabPane tab="销售情况" key="1">
-				    	<div id="echarts_main1" style={{ minWidth: 600, height: 300 }}></div>
-						<div id="echarts_main2" style={{ minWidth: 600, height: 300 }}></div>	
+				    	<div id="echarts_main1" style={{ minWidth: 500, height: 300 }}></div>
+						<div id="echarts_main2" style={{ minWidth: 500, height: 300 }}></div>	
 				    </TabPane>
 				    <TabPane tab="市场份额" key="2">
 				    	

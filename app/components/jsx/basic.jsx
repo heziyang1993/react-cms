@@ -27,17 +27,17 @@ class Basic extends React.Component {
 			    console.log(collapsed);
 			    this.setState({ collapsed });
 			  }
-		    componentDidMount(){
-		    	var cookies = document.cookie.split('; ');
-		    	cookies.forEach(function(ele){
-		    		var temp = ele.split('=');
-		    		if(temp[0] == 'user') {
-		    			return
-		    		}else {
-		    			location.hash = '/login';
-		    		}
-		    	})
-		    }
+//		    componentDidMount(){
+//		    	var cookies = document.cookie.split('; ');
+//		    	cookies.forEach(function(ele){
+//		    		var temp = ele.split('=');
+//		    		if(temp[0] == 'user') {
+//		    			return
+//		    		}else {
+//		    			location.hash = '/login';
+//		    		}
+//		    	})
+//		    }
 		  render() {
 		  	//const {count, increase, decrease} = this.props;继承redux里面的state和action
 		    return (
@@ -94,10 +94,11 @@ class Basic extends React.Component {
 		              <Breadcrumb.Item></Breadcrumb.Item>
 		            </Breadcrumb>
 			          	<div className="basic_main" style={{ padding: 24, background: '#fff'}}>
-										<Route path="/basic/project" component={Project}/>
-			            	<Route exact path="/basic/datamap" component={Datamap}/>
-			            	<Route exact path="/basic/user" component={User}/>
-			            	<Route exact path="/basic/detail" component={Detail}/>
+							<Route path="/basic/project" component={Project}/>
+			            		<Route exact path="/basic/datamap" component={Datamap}/>
+			            		<Route exact path="/basic/user" component={User}/>
+			            		<Route exact path="/basic/detail" component={Detail}/>
+			            		<Redirect to="/basic/datamap"/>
 			            </div>
 			          </Content>
 			        </Layout>
